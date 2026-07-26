@@ -1,62 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>PhishGuard ML</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard - URL Threat Scanner</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<h1>🛡️ PhishGuard ML</h1>
+        <div class="eyebrow">
+            <span class="dot"></span>
+            MACHINE LEARNING SECURITY
+        </div>
 
-<form action="/predict" method="POST">
+        <div class="brand-row">
 
-<input
-type="text"
-name="url"
-placeholder="Enter Website URL"
-required>
+            <!-- Shield Icon -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L20 5V11C20 16 16.5 20.5 12 22C7.5 20.5 4 16 4 11V5L12 2Z"
+                    stroke="#4C7EF3"
+                    stroke-width="2"
+                    fill="none"/>
+                <path d="M9 12L11 14L15 10"
+                    stroke="#4C7EF3"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
 
-<button type="submit">
-Analyze
-</button>
+            <h1>PhishGuard</h1>
 
-</form>
+        </div>
 
-{% if result %}
+        <p class="tagline">
+            Machine Learning Based Phishing Website Detection System
+        </p>
 
-<div class="result">
+        <form action="/predict" method="POST">
 
-<h2 style="color:{{color}}">
+            <div class="input-row">
 
-{{result}}
+                <span class="prefix">></span>
 
-</h2>
+                <input
+                    type="text"
+                    name="url"
+                    placeholder="Enter website URL..."
+                    required>
 
-<p>
+            </div>
 
-<b>Confidence :</b>
+            <button type="submit">
 
-{{confidence}} %
+                Analyze URL
 
-</p>
+            </button>
 
-<p>
+        </form>
 
-<b>URL :</b>
+        {% if result %}
 
-{{url}}
+        <div class="result {% if 'LEGITIMATE' in result %}safe{% else %}phishing{% endif %}">
 
-</p>
+            <div class="result-head">
 
-</div>
+                <span class="status-dot"></span>
 
-{% endif %}
+                <span class="verdict">
 
-</div>
+                    {{ result }}
+
+                </span>
+
+            </div>
+
+            <p class="url-echo">
+
+                {{ url }}
+
+            </p>
+
+            <div class="confidence">
+
+                <div class="confidence-track">
+
+                    {% for i in range(10) %}
+
+                        {% if confidence >= (i+1)*10 %}
+
+                            <span class="filled"></span>
+
+                        {% else %}
+
+                            <span></span>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+                <div class="confidence-value">
+
+                    {{ confidence }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <div class="footer-note">
+
+            Powered by Random Forest • Flask • Scikit-Learn
+
+        </div>
+
+    </div>
 
 </body>
 
