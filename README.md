@@ -218,33 +218,19 @@ Confidence: 98.74%
 
 ## Home Page
 
-> Add screenshot here
-
-```
-screenshots/home.png
-```
+![Home](screenshots/home.png)
 
 ---
 
-## Legitimate Website Prediction
+## Legitimate Website
 
-> Add screenshot here
-
-```
-screenshots/legitimate-result.png
-```
+![Legitimate](screenshots/legitimate-result.png)
 
 ---
 
-## Phishing Website Prediction
+## Phishing Website
 
-> Add screenshot here
-
-```
-screenshots/phishing-result.png
-```
-
----
+![Phishing](screenshots/phishing-result.png)
 
 # 📈 Machine Learning Model
 
