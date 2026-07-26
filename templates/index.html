@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PhishGuard ML</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🛡️ PhishGuard ML</h1>
+
+<form action="/predict" method="POST">
+
+<input
+type="text"
+name="url"
+placeholder="Enter Website URL"
+required>
+
+<button type="submit">
+Analyze
+</button>
+
+</form>
+
+{% if result %}
+
+<div class="result">
+
+<h2 style="color:{{color}}">
+
+{{result}}
+
+</h2>
+
+<p>
+
+<b>Confidence :</b>
+
+{{confidence}} %
+
+</p>
+
+<p>
+
+<b>URL :</b>
+
+{{url}}
+
+</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
